@@ -8,6 +8,7 @@ import { config as dotenv } from 'dotenv';
 import CommonRoutes from './main/common/CommonRoutes';
 import { UserRoutes } from './main/routers/UserRouter';
 import { AuthRoutes } from './main/routers/AuthRoutes';
+import { RecordRoutes } from './main/routers/RecordRoutes';
 
 class App {
   app: Application;
@@ -33,6 +34,7 @@ class App {
   protected getRoutes(): void {
     this.routes.push(new AuthRoutes(this.app));
     this.routes.push(new UserRoutes(this.app));
+    this.routes.push(new RecordRoutes(this.app));
 
     this.app.use((req: Request, res: Response) => {
       console.log(req.cookies);
