@@ -1,5 +1,5 @@
 import Connection from '../database';
-import { IUserPayload } from './dto/user.dto';
+import { IUserPayload, IUserUpdatePayload } from './dto/user.dto';
 
 const prisma = Connection.getInstance();
 
@@ -48,6 +48,20 @@ class UserRepository {
       }
     });
     return user;
+  }
+
+  async update(id: string, payload: IUserUpdatePayload) {
+    const updateUser = await prisma.user.update({
+      where: { id },
+      data: payload
+    });
+    return {
+      id: updateUser.id,
+      email: updateUser.email,
+      nickname: updateUser.nickname,
+      status: updateUser.status,
+      lastLogin: updateUser.lastLogin
+    };
   }
 }
 

@@ -7,7 +7,7 @@ import BodyValidationMiddleware from '../middlewares/BodyValidationMiddleware';
 
 export class AuthRoutes extends CommonRoutes {
   constructor(app: Application) {
-    super(app, 'UserRouter');
+    super(app, 'AuthRouter');
     this.configureRoutes();
   }
 

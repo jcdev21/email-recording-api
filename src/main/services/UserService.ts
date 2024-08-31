@@ -1,4 +1,4 @@
-import { IUserPayload } from '../../infra/repositories/dto/user.dto';
+import { IUserPayload, IUserUpdatePayload } from '../../infra/repositories/dto/user.dto';
 import UserRepository from '../../infra/repositories/UserRepository';
 import { hashPasswordWithBcrypt } from '../helpers/Authentication';
 import { ICommonService } from '../interfaces/ICommonService';
@@ -32,6 +32,14 @@ class UserService implements ICommonService {
   async getUserByEmailWithPassword(email: string) {
     try {
       return await UserRepository.getByEmail(email);
+    } catch (error: unknown) {
+      throw error;
+    }
+  }
+
+  async edit(id: string, payload: IUserUpdatePayload) {
+    try {
+      return await UserRepository.update(id, payload);
     } catch (error: unknown) {
       throw error;
     }
