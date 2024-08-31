@@ -20,6 +20,22 @@ class RecordController {
       });
     }
   }
+
+  async getAll(req: Request, res: Response) {
+    try {
+      const records = await RecordService.list();
+      return res.status(200).json({
+        success: true,
+        message: 'Success get list record',
+        data: records
+      });
+    } catch (error) {
+      return res.status(400).json({
+        success: false,
+        message: 'Bad Request'
+      });
+    }
+  }
 }
 
 export default new RecordController();

@@ -6,8 +6,12 @@ import { sendMail } from '../helpers/Mail';
 import { ICommonService } from '../interfaces/ICommonService';
 
 class RecordService implements ICommonService {
-  list(): Promise<unknown> {
-    throw new Error('Method not implemented.');
+  async list() {
+    try {
+      return await RecordRepository.getAll();
+    } catch (error: unknown) {
+      throw error;
+    }
   }
 
   readById(id: string): Promise<unknown> {

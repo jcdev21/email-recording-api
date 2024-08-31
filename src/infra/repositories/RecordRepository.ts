@@ -13,6 +13,16 @@ class RecordRepository {
       description: record.description
     };
   }
+
+  async getAll() {
+    const records = await prisma.record.findMany({
+      select: {
+        id: true,
+        email: true
+      }
+    });
+    return records;
+  }
 }
 
 export default new RecordRepository();

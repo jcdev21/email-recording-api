@@ -16,6 +16,7 @@ export class RecordRoutes extends CommonRoutes {
     this.app
       .route('/records')
       .all(JwtMiddleware.validJwtNeeded, AuthMiddleware.verifyRefreshTokenAndCreateToken)
+      .get(RecordController.getAll)
       .post([
         body('email').isEmail(),
         body('date').isDate({ format: 'YYYY-MM-DD' }).toDate(),
