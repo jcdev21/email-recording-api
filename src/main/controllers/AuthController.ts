@@ -28,7 +28,11 @@ class AuthController {
         success: true,
         message: responseMessage,
         data: {
-          accessToken
+          accessToken,
+          user: {
+            userId: req.body.userId,
+            email: req.body.email
+          }
         }
       });
     } catch (error) {
