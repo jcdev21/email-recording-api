@@ -14,6 +14,15 @@ class RecordService implements ICommonService {
     }
   }
 
+  async listByDate(dateString: string) {
+    try {
+      const date = new Date(dateString);
+      return await RecordRepository.getAllByDate(date);
+    } catch (error: unknown) {
+      throw error;
+    }
+  }
+
   readById(id: string): Promise<unknown> {
     throw new Error('Method not implemented.');
   }

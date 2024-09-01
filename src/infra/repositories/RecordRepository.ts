@@ -23,6 +23,21 @@ class RecordRepository {
     });
     return records;
   }
+
+  async getAllByDate(date: Date) {
+    const records = await prisma.record.findMany({
+      select: {
+        id: true,
+        email: true
+      },
+      where: {
+        date: {
+          equals: date
+        }
+      }
+    });
+    return records;
+  }
 }
 
 export default new RecordRepository();

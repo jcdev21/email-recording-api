@@ -22,8 +22,10 @@ class RecordController {
   }
 
   async getAll(req: Request, res: Response) {
+    const { date } = req.query;
+
     try {
-      const records = await RecordService.list();
+      const records = await RecordService.listByDate(date as string);
       return res.status(200).json({
         success: true,
         message: 'Success get list record',
